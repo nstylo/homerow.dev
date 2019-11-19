@@ -28,6 +28,7 @@ module.exports = {
   rules: {
     "react/prop-types": "off", // Disable prop-types as we use TypeScript for type checking
     "no-console": "warn",
+    "react/display-name": "off",
   },
   overrides: [
     // Override some TypeScript rules just for .js files
