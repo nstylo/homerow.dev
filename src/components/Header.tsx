@@ -1,42 +1,37 @@
 import { Link } from "gatsby"
-import PropTypes from "prop-types"
+import styled from "styled-components"
 import React from "react"
 
-const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
-    </div>
+import { H1 } from "./Basics"
+
+interface HeaderProps {
+  siteTitle: string
+  className: string
+}
+
+const Header = ({ siteTitle = `No Title Given`, className }: HeaderProps): JSX.Element => (
+  <header className={className}>
+    <HeaderWrapper>
+      <H1>
+        <HeaderLink to="/">{siteTitle}</HeaderLink>
+      </H1>
+    </HeaderWrapper>
   </header>
 )
 
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
+const HeaderLink = styled(Link)`
+  color: white;
+  text-decoration: none;
+`
 
-Header.defaultProps = {
-  siteTitle: ``,
-}
+const HeaderWrapper = styled.div`
+  margin: 0 auto;
+  max-width: 960;
+  padding: 1.45rem 1.0875rem;
+`
 
-export default Header
+const StyledHeader = styled(Header)`
+  background-color: transparent;
+`
+
+export default StyledHeader

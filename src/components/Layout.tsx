@@ -49,7 +49,7 @@ const Layout = ({ children }) => {
     <>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <Header siteTitle={data.site.siteMetadata.title} />
+        <Header siteTitle={data.site.siteMetadata.title} className={"header"} />
         <Button>Something</Button>
         <main>{children}</main>
         <footer>
