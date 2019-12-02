@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-const Button = styled.button`
+export const Button = styled.button`
   background-color: transparent;
   color: #006990;
   border: solid;
@@ -10,4 +10,6 @@ const Button = styled.button`
   padding: 0.25em 1em;
 `
 
-export default Button
+export const H1 = styled.h1`
+  margin: 0;
+`
