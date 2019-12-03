@@ -29,8 +29,34 @@ const theme: ThemeProps = {
 }
 
 const GlobalStyle = createGlobalStyle<{ theme: ThemeProps }>`
-  body {
+  html {
+    color: ${(props): string => props.theme.foreground}
     background-color: ${(props): string => props.theme.background};
+    font-size: 28px;
+
+    body {
+      margin: 0;
+    }
+    h1 {
+      margin: 0;
+      font-size: 1rem;
+    }
+    h2 {
+      margin: 0;
+      font-size: 0.8rem;
+    }
+    h3 {
+      margin: 0;
+      font-size: 0.7rem;
+    }
+    h4 {
+      margin: 0;
+      font-size: 0.55rem;
+    }
+    p {
+      margin: 0;
+      font-size: 0.5rem;
+    }
   }
 `
 
