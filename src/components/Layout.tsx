@@ -7,10 +7,9 @@
 
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import { ThemeProvider, createGlobalStyle } from "styled-components"
+import styled, { ThemeProvider, createGlobalStyle } from "styled-components"
 
 import Header from "./Header"
-import { Button } from "./Basics"
 
 interface ThemeProps {
   foreground: string
@@ -32,31 +31,32 @@ const GlobalStyle = createGlobalStyle<{ theme: ThemeProps }>`
   html {
     color: ${(props): string => props.theme.foreground}
     background-color: ${(props): string => props.theme.background};
-    font-size: 28px;
-
-    body {
-      margin: 0;
-    }
-    h1 {
-      margin: 0;
-      font-size: 1rem;
-    }
-    h2 {
-      margin: 0;
-      font-size: 0.8rem;
-    }
-    h3 {
-      margin: 0;
-      font-size: 0.7rem;
-    }
-    h4 {
-      margin: 0;
-      font-size: 0.55rem;
-    }
-    p {
-      margin: 0;
-      font-size: 0.5rem;
-    }
+    font-size: 32px;
+    height: 100%;
+  }
+  body, #___gatsby, #gatsby-focus-wrapper {
+    margin: 0;
+    height: 100%;
+  }
+  h1 {
+    margin: 0;
+    font-size: 1rem;
+  }
+  h2 {
+    margin: 0;
+    font-size: 0.85rem;
+  }
+  h3 {
+    margin: 0;
+    font-size: 0.75rem;
+  }
+  h4 {
+    margin: 0;
+    font-size: 0.65rem;
+  }
+  p {
+    margin: 0;
+    font-size: 0.6rem;
   }
 `
 
