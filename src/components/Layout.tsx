@@ -76,30 +76,40 @@ const Layout = ({ children }) => {
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Grid>
-          <GridItem>
+          <Container colStart={2} colEnd={2}>
             <Header siteTitle={data.site.siteMetadata.title} className={"header"} />
-          </GridItem>
-          <GridItem>
+          </Container>
+          <Container colStart={2} colEnd={2}>
             <Main>{children}</Main>
-          </GridItem>
-          <GridItem>
+          </Container>
+          <Container colStart={2} colEnd={2}>
             <Footer>
-              <p>
-                © {new Date().getFullYear()}, Built with
-                {` `}
-                <a href="https://www.gatsbyjs.org">Gatsby</a>
-              </p>
+              <Container colStart={1} colEnd={1}>
+                <p>Built with ....</p>
+              </Container>
+              <Container colStart={2} colEnd={2}>
+                <Contact />
+              </Container>
+              <Container colStart={1} colEnd={3} rowStart={2} rowEnd={2}>
+                <p>
+                  © {new Date().getFullYear()}, Built with
+                  {` `}
+                  <a href="https://www.gatsbyjs.org">Gatsby</a>
+                </p>
+              </Container>
             </Footer>
-          </GridItem>
+          </Container>
         </Grid>
       </ThemeProvider>
     </>
   )
 }
 
-const GridItem = styled.div`
-  grid-column-start: 2;
-  grid-column-end: 2;
+const Container = styled.div<{ colStart: number; colEnd: number; rowStart?: number; rowEnd?: number; style?: object }>`
+  grid-column-start: ${({ colStart }): number => colStart};
+  grid-column-end: ${({ colEnd }): number => colEnd};
+  grid-row-start: ${({ rowStart }): number | undefined | null => rowStart};
+  grid-row-end: ${({ rowEnd }): number | undefined | null => rowEnd};
 `
 
 const Grid = styled.div`
@@ -116,7 +126,10 @@ const Main = styled.main`
 `
 
 const Footer = styled.footer`
-  width: 1024px;
+  display: grid;
+  grid-template-columns: 70% 30%;
+  grid-template-rows: ;
+  max-width: 1024px;
   margin: 0 auto;
 `
 

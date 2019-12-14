@@ -39,9 +39,9 @@ interface ImageLinkProps {
 }
 
 const ImageLink = ({ path = "/", imgSource, alt, className }: ImageLinkProps): JSX.Element => (
-  <Link to={path} className={className}>
+  <a href={path} className={className} target="_blank" rel="noopener noreferrer">
     <img src={imgSource} alt={alt} />
-  </Link>
+  </a>
 )
 
 interface HeaderProps {
