@@ -10,6 +10,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components"
 
 import Header from "./Header"
+import Contact from "../forms/Contact"
 
 interface ThemeProps {
   foreground: string
