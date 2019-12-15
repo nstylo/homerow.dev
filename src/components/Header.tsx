@@ -6,6 +6,7 @@ import Searchbar from "./Searchbar"
 import LinkedInSvg from "../images/linkedin.svg"
 import RssSvg from "../images/rss.svg"
 import GitHub from "../images/github.svg"
+import MailSvg from "../images/mail.svg"
 
 interface ItemProps {
   name: string
@@ -65,9 +66,15 @@ const Header = ({ siteTitle, className }: HeaderProps): JSX.Element => (
         <Searchbar className="searchbar" />
       </Container>
       <Container>
-        <StyledImageLink path="/test" imgSource={LinkedInSvg} alt="LinkedIn" className="imagelink" />
-        <StyledImageLink path="/test" imgSource={GitHub} alt="GitHub" className="imagelink" />
+        <StyledImageLink
+          path="https://www.linkedin.com/in/niklas-stylianou-452367199"
+          imgSource={LinkedInSvg}
+          alt="LinkedIn"
+          className="imagelink"
+        />
+        <StyledImageLink path="https://github.com/nstylo" imgSource={GitHub} alt="GitHub" className="imagelink" />
         <StyledImageLink path="/test" imgSource={RssSvg} alt="RSS" className="imagelink" />
+        <StyledImageLink path="/test" imgSource={MailSvg} alt="RSS" className="imagelink" />
       </Container>
     </HeaderWrapper>
   </header>
