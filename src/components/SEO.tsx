@@ -68,7 +68,9 @@ function SEO({ description, lang, meta, title }) {
           content: metaDescription,
         },
       ].concat(meta)}
-    />
+    >
+      <script data-isso="http://78.47.102.185/" src="http://78.47.102.185/js/embed.min.js"></script>
+    </Helmet>
   )
 }
 
