@@ -9,6 +9,7 @@ export default ({ data }) => {
       <div>
         <h2>{post.frontmatter.title}</h2>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
+        <section id="isso-thred"></section>
       </div>
     </Layout>
   )
