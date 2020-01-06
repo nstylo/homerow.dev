@@ -2,17 +2,34 @@ import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/Layout"
 
-export default ({ data }) => {
-  const post = data.markdownRemark
-  return (
-    <Layout>
-      <div>
-        <h2>{post.frontmatter.title}</h2>
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
-        <section id="isso-thread"></section>
-      </div>
-    </Layout>
-  )
+class BlogPost extends React.Component {
+  componentDidMount(): void {
+    const scriptElem = document.createElement("script")
+    scriptElem.type = "text/javascript"
+    scriptElem.setAttribute("data-isso", "http://78.47.102.185/")
+    scriptElem.setAttribute("data-isso-css", "true")
+    scriptElem.setAttribute("src", "http://78.47.102.185/js/embed.min.js")
+    scriptElem.async = true
+
+    const sectionElem = document.createElement("section")
+    sectionElem.id = "isso-thread"
+    this.instance.appendChild(scriptElem)
+    this.instance.appendChild(sectionElem)
+  }
+
+  render(): JSX.Element {
+    const post = this.props.data.markdownRemark
+
+    return (
+      <Layout>
+        <div>
+          <h2>{post.frontmatter.title}</h2>
+          <div dangerouslySetInnerHTML={{ __html: post.html }} />
+          <div ref={el => (this.instance = el)}></div>
+        </div>
+      </Layout>
+    )
+  }
 }
 
 export const query = graphql`
@@ -25,3 +42,5 @@ export const query = graphql`
     }
   }
 `
+
+export default BlogPost
