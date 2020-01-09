@@ -40,5 +40,11 @@ module.exports = {
     // `gatsby-plugin-offline`,
     `gatsby-plugin-typescript`,
     `gatsby-plugin-styled-components`,
+    {
+      resolve: "gatsby-plugin-mailchimp",
+      options: {
+        endpoint: "https://dev.us4.list-manage.com/subscribe/post?u=85cbdbe00536316b3bf4dafd6&amp;id=30edb54952",
+      },
+    },
   ],
 }

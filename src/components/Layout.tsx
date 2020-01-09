@@ -10,7 +10,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components"
 
 import Header from "./Header"
-import Contact from "../forms/Contact"
+import SubscriptionForm from "../forms/SubscriptionForm"
 
 interface ThemeProps {
   foreground: string
@@ -84,12 +84,12 @@ const Layout = ({ children }) => {
             <Main>{children}</Main>
           </Container>
           <Container colStart={2} colEnd={2}>
+            <SubscriptionForm className="email-newsletter" />
+          </Container>
+          <Container colStart={2} colEnd={2}>
             <Footer>
               <Container colStart={1} colEnd={1}>
                 <p>Built with ....</p>
-              </Container>
-              <Container colStart={2} colEnd={2}>
-                <Contact />
               </Container>
               <Container colStart={1} colEnd={3} rowStart={2} rowEnd={2}>
                 <p>
@@ -117,7 +117,7 @@ const Grid = styled.div`
   display: grid;
   height: 100%;
   grid-template-columns: auto 1024px auto;
-  grid-template-rows: 80px auto 80px;
+  grid-template-rows: 80px auto 160px 80px;
 `
 
 const Main = styled.main`
