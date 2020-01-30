@@ -1,11 +1,26 @@
 ### TODO
 
-- [ ] Define basic styled components (buttons, wrappers, blogpost preview, header, footer)
-- [ ] Define Theme and allow for changing theme
-- [ ] Make blogpost template
+- [x] Define basic styled components (buttons, wrappers, blogpost preview, header, footer)
+- [x] Define Theme and allow for changing theme
+- [x] Make blogpost template
+- [x] Implement comment section per blog post
+- [x] Get RSS feed
+- [x] Deploy
 - [ ] Make project template
 - [ ] Include Favicon
 - [ ] Make own svg logo
-- [ ] Implement comment section per blog post
-- [ ] Get RSS feed
-- [ ] Deploy
+- [ ] Add gitlab
+- [ ] Define Comments component
+- [ ] Define proper Email subscription box
+- [ ] Work out color scheme for Website
+- [ ] Work out Code block color scheme
+- [ ] Blog Search
+- [ ] Work on Header
+- [ ] Work on Footer
+- [ ] Dockerize
+- [ ] Colorscheme switcher
+- [ ] Animations
+- [ ] Project Cards
+- [ ] Blog Cards
+- [ ] Mainpage
+- [ ] Design email template
