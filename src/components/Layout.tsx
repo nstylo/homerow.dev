@@ -59,6 +59,14 @@ const GlobalStyle = createGlobalStyle<{ theme: ThemeProps }>`
     margin: 0;
     font-size: 0.6rem;
   }
+  .gatsby-highlight {
+    font-size: 0.6rem;
+
+    .line-numbers-rows {
+      width: 2em !important;
+      padding: 1em 0 1em 0.6em;
+    }
+  }
 `
 
 const Layout = ({ children }) => {
