@@ -73,8 +73,7 @@ const Header = ({ siteTitle, className }: HeaderProps): JSX.Element => (
           className="imagelink"
         />
         <StyledImageLink path="https://github.com/nstylo" imgSource={GitHub} alt="GitHub" className="imagelink" />
-        <StyledImageLink path="/test" imgSource={RssSvg} alt="RSS" className="imagelink" />
-        <StyledImageLink path="/test" imgSource={MailSvg} alt="RSS" className="imagelink" />
+        <StyledImageLink path="/rss.xml" imgSource={RssSvg} alt="RSS" className="imagelink" />
       </Container>
     </HeaderWrapper>
   </header>
