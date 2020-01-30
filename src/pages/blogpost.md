@@ -1,6 +1,7 @@
 ---
 title: "This is a test blogpost"
 date: "2020-01-30"
+description: "Today we are discussing Latex and code highlighting"
 ---
 
 $\LaTeX$

@@ -7,20 +7,20 @@ import Layout from "../components/Layout"
 interface BlogPostPreviewProps {
   key: string
   title: string
-  excerpt: string
+  description: string
   date: string
   slug: string
   className: string
 }
 
-const BlogPostPreview = ({ key, title, excerpt, date, slug, className }: BlogPostPreviewProps): JSX.Element => {
+const BlogPostPreview = ({ key, title, description, date, slug, className }: BlogPostPreviewProps): JSX.Element => {
   return (
     <div key={key} className={className}>
       <Link to={slug}>
         <h2>{title}</h2>
       </Link>
       <p>{date}</p>
-      <p>{excerpt}</p>
+      <p>{description}</p>
     </div>
   )
 }
@@ -40,7 +40,7 @@ const Blog = ({ data }) => {
         <StyledBlogPostPreview
           key={node.id}
           title={node.frontmatter.title}
-          excerpt={node.excerpt}
+          description={node.frontmatter.description}
           date={node.frontmatter.date}
           slug={node.fields.slug}
           className={"blogpostpreview"}
@@ -60,6 +60,7 @@ export const query = graphql`
           frontmatter {
             title
             date(formatString: "DD MMMM, YYYY")
+            description
           }
           fields {
             slug
