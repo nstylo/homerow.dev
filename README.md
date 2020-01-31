@@ -6,7 +6,7 @@
 - [x] Implement comment section per blog post
 - [x] Get RSS feed
 - [x] Deploy
-- [ ] Make project template
+- [ ] Choose global font
 - [ ] Include Favicon
 - [ ] Make own svg logo
 - [ ] Add gitlab
