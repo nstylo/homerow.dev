@@ -6,7 +6,6 @@ import Searchbar from "./Searchbar"
 import LinkedInSvg from "../images/linkedin.svg"
 import RssSvg from "../images/rss.svg"
 import GitHub from "../images/github.svg"
-import MailSvg from "../images/mail.svg"
 
 interface ItemProps {
   name: string
