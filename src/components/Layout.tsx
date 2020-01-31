@@ -10,7 +10,6 @@ import { useStaticQuery, graphql } from "gatsby"
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components"
 
 import Header from "./Header"
-import SubscriptionForm from "../forms/SubscriptionForm"
 
 interface ThemeProps {
   foreground: string
@@ -59,6 +58,12 @@ const GlobalStyle = createGlobalStyle<{ theme: ThemeProps }>`
     margin: 0;
     font-size: 0.6rem;
   }
+  label {
+    font-size: 0.6rem;
+  }
+  button {
+    font-size: 0.6rem;
+  }
   .gatsby-highlight {
     font-size: 0.6rem;
 
@@ -90,9 +95,6 @@ const Layout = ({ children }) => {
           </Container>
           <Container colStart={2} colEnd={2}>
             <Main>{children}</Main>
-          </Container>
-          <Container colStart={2} colEnd={2}>
-            <SubscriptionForm className="email-newsletter" />
           </Container>
           <Container colStart={2} colEnd={2}>
             <Footer>

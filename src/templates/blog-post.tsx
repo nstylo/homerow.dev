@@ -2,6 +2,8 @@ import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/Layout"
 
+import SubscriptionForm from "../forms/SubscriptionForm"
+
 class BlogPost extends React.Component {
   componentDidMount(): void {
     const scriptElem = document.createElement("script")
@@ -26,6 +28,7 @@ class BlogPost extends React.Component {
           <h2>{post.frontmatter.title}</h2>
           <div dangerouslySetInnerHTML={{ __html: post.html }} />
           <div ref={el => (this.instance = el)}></div>
+          <SubscriptionForm />
         </div>
       </Layout>
     )

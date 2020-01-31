@@ -1,20 +1,21 @@
 import React, { useState } from "react"
 import styled from "styled-components"
 import addToMailchimp from "gatsby-plugin-mailchimp"
+import Mail from "../images/envelope-solid.svg"
 
 type submission = "success" | "failure" | "not_submitted" | "client_error"
 
 const SubscriptionForm = props => {
   const [submitted, setSubmitted] = useState<submission>("not_submitted")
-  const [email, setEmail] = useState<string>("")
+  const [mail, setMail] = useState<string>("")
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault() // do not reload page
 
-    addToMailchimp(email)
+    addToMailchimp(mail)
       .then(data => {
         if (data.result === "success") {
-          setEmail("")
+          setMail("")
           setSubmitted("success")
         } else {
           setSubmitted("failure")
@@ -28,25 +29,101 @@ const SubscriptionForm = props => {
   }
 
   return (
-    <form className={props.className} name="email-newsletter" method="POST" onSubmit={handleSubmit}>
-      <label htmlFor="email">Your email: </label>
-      <div>
-        <input
-          type="email"
-          name="email"
-          value={email}
-          onChange={(e: React.FormEvent<HTMLInputElement>): void => setEmail(e.currentTarget.value)}
-        />
-        <button type="submit">Subscribe</button>
-      </div>
-    </form>
+    <Container>
+      <Wrapper>
+        <form name="email-newsletter" method="POST" onSubmit={handleSubmit}>
+          <Header>Subscribe to my Newsletter</Header>
+          <Paragraph>
+            If you like to receive updates on new blog posts or projects, simply subscribe to my newsletter with your
+            email address.
+          </Paragraph>
+          <InputField mail={mail} setMail={setMail} />
+        </form>
+      </Wrapper>
+    </Container>
   )
 }
 
-const styledSubcriptionForm = styled(SubscriptionForm)`
-  max-width: 60%;
-  background-color: grey;
-  padding: 20px 10px;
+const Paragraph = styled.p`
+  margin-bottom: 20px;
 `
 
-export default styledSubcriptionForm
+const Header = styled.h3`
+  margin-bottom: 10px;
+`
+
+// inner wrapper
+const Wrapper = styled.div`
+  width: 60%;
+  background-color: ${(props): string => props.theme.backgroundSecondary};
+  padding: 40px 36px;
+`
+
+// outer wrapper
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: transparent;
+  padding: 30px 0;
+`
+
+const InputField = ({ mail, setMail }) => {
+  return (
+    <InputWrapper>
+      <Label>
+        <Image />
+      </Label>
+      <Input mail={mail} setMail={setMail} />
+      <SubButton>Subscribe</SubButton>
+    </InputWrapper>
+  )
+}
+
+const Image = styled.img.attrs(() => ({
+  src: Mail,
+  height: "20px",
+  width: "20px",
+  alt: "mail",
+}))`
+  filter: invert(100%);
+`
+
+const Label = styled.label.attrs(() => ({
+  htmlFor: "subscriptionform-email",
+}))`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-basis: 8%;
+  background-color: ${(props): string => props.theme.primary};
+  cursor: pointer;
+`
+
+const Input = styled.input.attrs(({ mail, setMail }) => ({
+  type: "email",
+  name: "email",
+  id: "subscriptionform-email",
+  value: mail,
+  onChange: (e: React.FormEvent<HTMLInputElement>): void => setMail(e.currentTarget.value),
+}))`
+  flex-basis: 72%;
+`
+
+const SubButton = styled.button.attrs(() => ({
+  type: "submit",
+}))`
+  flex-basis: 20%;
+  color: ${(props): string => props.theme.foreground};
+  background-color: ${(props): string => props.theme.primary};
+  border: none;
+  cursor: pointer;
+`
+
+const InputWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  height: 1.2rem;
+`
+
+export default SubscriptionForm
