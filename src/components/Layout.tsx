@@ -17,6 +17,8 @@ interface ThemeProps {
   backgroundSecondary: string
   primary: string
   secondary: string
+  success: string
+  error: string
 }
 
 const theme: ThemeProps = {
@@ -25,6 +27,8 @@ const theme: ThemeProps = {
   backgroundSecondary: "#343434",
   primary: "#ee6352",
   secondary: "#006989",
+  success: "#00b9ae",
+  error: "#ff5e5b",
 }
 
 const GlobalStyle = createGlobalStyle<{ theme: ThemeProps }>`
