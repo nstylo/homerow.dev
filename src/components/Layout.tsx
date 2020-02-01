@@ -68,6 +68,9 @@ const GlobalStyle = createGlobalStyle<{ theme: ThemeProps }>`
   button {
     font-size: 0.6rem;
   }
+  input {
+    font-size: 0.6rem;
+  }
   .gatsby-highlight {
     font-size: 0.6rem;
 
