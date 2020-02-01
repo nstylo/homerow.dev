@@ -5,7 +5,7 @@ import Mail from "../images/envelope-solid.svg"
 
 type submission = "success" | "failure" | "not_submitted" | "client_error"
 
-const SubscriptionForm = props => {
+const SubscriptionForm = (): JSX.Element => {
   const [submitted, setSubmitted] = useState<submission>("not_submitted")
   const [mail, setMail] = useState<string>("")
 
@@ -18,15 +18,22 @@ const SubscriptionForm = props => {
           setMail("")
           setSubmitted("success")
         } else {
-          setSubmitted("failure")
+          setSubmitted("failure") // user is already registered
         }
       })
       .catch((error: Error) => {
         setSubmitted("client_error")
-        console.log("Errors on submit are client side")
         console.log(error)
       })
   }
+
+  // set message to user after hitting subscribe button
+  const msg =
+    submitted === "success"
+      ? "You have subscribed successfully!"
+      : submitted === "failure"
+      ? "Either your email is already registered or invalid."
+      : "Client-side error occured, please reload the page."
 
   return (
     <Container>
@@ -38,6 +45,9 @@ const SubscriptionForm = props => {
             email address.
           </Paragraph>
           <InputField mail={mail} setMail={setMail} />
+          <ResponseBanner submitted={submitted}>
+            <p>{msg}</p>
+          </ResponseBanner>
         </form>
       </Wrapper>
     </Container>
@@ -68,11 +78,16 @@ const Container = styled.div`
   padding: 30px 0;
 `
 
-const InputField = ({ mail, setMail }) => {
+interface InputProps {
+  mail: string
+  setMail: (mail: string) => void
+}
+
+const InputField = ({ mail, setMail }: InputProps): JSX.Element => {
   return (
     <InputWrapper>
       <Label>
-        <Image />
+        <Icon />
       </Label>
       <Input mail={mail} setMail={setMail} />
       <SubButton>Subscribe</SubButton>
@@ -80,7 +95,7 @@ const InputField = ({ mail, setMail }) => {
   )
 }
 
-const Image = styled.img.attrs(() => ({
+const Icon = styled.img.attrs(() => ({
   src: Mail,
   height: "20px",
   width: "20px",
@@ -100,7 +115,7 @@ const Label = styled.label.attrs(() => ({
   cursor: pointer;
 `
 
-const Input = styled.input.attrs(({ mail, setMail }) => ({
+const Input = styled.input.attrs(({ mail, setMail }: InputProps) => ({
   type: "email",
   name: "email",
   id: "subscriptionform-email",
@@ -108,6 +123,7 @@ const Input = styled.input.attrs(({ mail, setMail }) => ({
   onChange: (e: React.FormEvent<HTMLInputElement>): void => setMail(e.currentTarget.value),
 }))`
   flex-basis: 72%;
+  padding: 0 12px;
 `
 
 const SubButton = styled.button.attrs(() => ({
@@ -124,6 +140,20 @@ const InputWrapper = styled.div`
   display: flex;
   width: 100%;
   height: 1.2rem;
+  margin-bottom: 16px;
+`
+
+const ResponseBanner = styled.div`
+  width: 100%;
+  height: 1.2rem;
+  background-color: ${({ submitted, theme }): string => (submitted === "success" ? theme.success : theme.error)};
+  display: ${({ submitted }): string => (submitted === "not_submitted" ? "none" : "flex")};
+  aria-hidden: ${({ submitted }): string => (submitted === "not_submitted" ? "true" : "false")};
+  align-items: center;
+
+  p {
+    margin: 0 12px;
+  }
 `
 
 export default SubscriptionForm
