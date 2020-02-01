@@ -6,12 +6,14 @@
 - [x] Implement comment section per blog post
 - [x] Get RSS feed
 - [x] Deploy
+- [x] Automate Welcome Email
+- [x] Define proper Email subscription box
 - [ ] Choose global font
+- [ ] Automate Email for new post
 - [ ] Include Favicon
 - [ ] Make own svg logo
 - [ ] Add gitlab
 - [ ] Define Comments component
-- [ ] Define proper Email subscription box
 - [ ] Work out color scheme for Website
 - [ ] Work out Code block color scheme
 - [ ] Blog Search
@@ -23,4 +25,3 @@
 - [ ] Project Cards
 - [ ] Blog Cards
 - [ ] Mainpage
-- [ ] Design email template
