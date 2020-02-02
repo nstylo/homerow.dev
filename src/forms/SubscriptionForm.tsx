@@ -59,7 +59,7 @@ const Paragraph = styled.p`
 `
 
 const Header = styled.h3`
-  margin-bottom: 10px;
+  margin: 0 0 10px 0;
 `
 
 // inner wrapper

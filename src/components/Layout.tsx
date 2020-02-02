@@ -32,34 +32,36 @@ const theme: ThemeProps = {
 }
 
 const GlobalStyle = createGlobalStyle<{ theme: ThemeProps }>`
+  @font-face {
+      font-family: 'Open Sans';
+      src: url('OpenSans-Regular.woff2') format('woff2'),
+          url('OpenSans-Regular.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+  }
   html {
     color: ${(props): string => props.theme.foreground}
     background-color: ${(props): string => props.theme.background};
     font-size: 32px;
+    font-family: 'Open Sans', sans-serif;
     height: 100%;
   }
   body, #___gatsby, #gatsby-focus-wrapper {
-    margin: 0;
     height: 100%;
   }
   h1 {
-    margin: 0;
     font-size: 1rem;
   }
   h2 {
-    margin: 0;
     font-size: 0.85rem;
   }
   h3 {
-    margin: 0;
     font-size: 0.75rem;
   }
   h4 {
-    margin: 0;
     font-size: 0.65rem;
   }
-  p, label, button, input {
-    margin: 0;
+  p, label, button, input, li, a, th, td {
     font-size: 0.6rem;
   }
   .gatsby-highlight {
