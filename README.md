@@ -8,12 +8,12 @@
 - [x] Deploy
 - [x] Automate Welcome Email
 - [x] Define proper Email subscription box
+- [x] Define Comments component
 - [ ] Choose global font
 - [ ] Automate Email for new post
 - [ ] Include Favicon
 - [ ] Make own svg logo
 - [ ] Add gitlab
-- [ ] Define Comments component
 - [ ] Work out color scheme for Website
 - [ ] Work out Code block color scheme
 - [ ] Blog Search
@@ -25,3 +25,7 @@
 - [ ] Project Cards
 - [ ] Blog Cards
 - [ ] Mainpage
+- [ ] Improve SEO
+- [ ] Improve accessibility
+- [ ] Fix Newsletter rerenders on typing
+- [ ] Table of content for blog post
