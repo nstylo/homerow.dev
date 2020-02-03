@@ -9,7 +9,9 @@
 - [x] Automate Welcome Email
 - [x] Define proper Email subscription box
 - [x] Define Comments component
-- [ ] Choose global font
+- [x] Choose global font
+- [ ] Add blog post pagination
+- [ ] Add "go to top" button
 - [ ] Automate Email for new post
 - [ ] Include Favicon
 - [ ] Make own svg logo
