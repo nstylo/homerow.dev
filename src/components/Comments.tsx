@@ -7,6 +7,10 @@ class Comments extends React.Component<{ className: string }> {
     scriptElem.type = "text/javascript"
     scriptElem.setAttribute("data-isso", "https://comments.homerow.dev/")
     scriptElem.setAttribute("data-isso-css", "true")
+    scriptElem.setAttribute("data-isso-avatar", "true")
+    scriptElem.setAttribute("data-isso-vote", "true")
+    scriptElem.setAttribute("data-isso-max-comments-top", "5")
+    scriptElem.setAttribute("data-isso-max-comments-nested", "3")
     scriptElem.setAttribute("src", "https://comments.homerow.dev/js/embed.min.js")
     scriptElem.async = true
 
