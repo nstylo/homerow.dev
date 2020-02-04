@@ -1,7 +1,8 @@
 import React, { useState } from "react"
 import styled from "styled-components"
 import addToMailchimp from "gatsby-plugin-mailchimp"
-import Mail from "../images/envelope-solid.svg"
+
+import MailIcon from "../images/envelope-solid.svg"
 
 type submission = "success" | "failure" | "not_submitted" | "client_error"
 
@@ -87,22 +88,13 @@ const InputField = ({ mail, setMail }: InputProps): JSX.Element => {
   return (
     <InputWrapper>
       <Label>
-        <Icon />
+        <MailIcon />
       </Label>
       <Input mail={mail} setMail={setMail} />
       <SubButton>Subscribe</SubButton>
     </InputWrapper>
   )
 }
-
-const Icon = styled.img.attrs(() => ({
-  src: Mail,
-  height: "20px",
-  width: "20px",
-  alt: "mail",
-}))`
-  filter: invert(100%);
-`
 
 const Label = styled.label.attrs(() => ({
   htmlFor: "subscriptionform-email",
@@ -113,6 +105,12 @@ const Label = styled.label.attrs(() => ({
   flex-basis: 8%;
   background-color: ${(props): string => props.theme.primary};
   cursor: pointer;
+
+  svg {
+    width: 22px;
+    height: 22px;
+    fill: ${(props): string => props.theme.foreground};
+  }
 `
 
 const Input = styled.input.attrs(({ mail, setMail }: InputProps) => ({

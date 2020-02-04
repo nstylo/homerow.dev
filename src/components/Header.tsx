@@ -3,9 +3,9 @@ import styled from "styled-components"
 import React from "react"
 
 import Searchbar from "./Searchbar"
-import LinkedInSvg from "../images/linkedin.svg"
-import RssSvg from "../images/rss.svg"
-import GitHub from "../images/github.svg"
+import LinkedInIcon from "../images/linkedin.svg"
+import RSSIcon from "../images/rss.svg"
+import GitHubIcon from "../images/github.svg"
 
 interface ItemProps {
   name: string
@@ -33,14 +33,13 @@ const MainItem = ({ name, path = "/", className }: MainItemProps): JSX.Element =
 
 interface ImageLinkProps {
   path?: string
-  imgSource: string
-  alt: string
   className: string
+  children: React.ReactNode
 }
 
-const ImageLink = ({ path = "/", imgSource, alt, className }: ImageLinkProps): JSX.Element => (
+const ImageLink = ({ path = "/", children, className }: ImageLinkProps): JSX.Element => (
   <a href={path} className={className} target="_blank" rel="noopener noreferrer">
-    <img src={imgSource} alt={alt} />
+    {children}
   </a>
 )
 
@@ -65,14 +64,15 @@ const Header = ({ siteTitle, className }: HeaderProps): JSX.Element => (
         <Searchbar className="searchbar" />
       </Container>
       <Container>
-        <StyledImageLink
-          path="https://www.linkedin.com/in/niklas-stylianou-452367199"
-          imgSource={LinkedInSvg}
-          alt="LinkedIn"
-          className="imagelink"
-        />
-        <StyledImageLink path="https://github.com/nstylo" imgSource={GitHub} alt="GitHub" className="imagelink" />
-        <StyledImageLink path="/rss.xml" imgSource={RssSvg} alt="RSS" className="imagelink" />
+        <StyledImageLink path="https://www.linkedin.com/in/niklas-stylianou-452367199">
+          <LinkedInIcon />
+        </StyledImageLink>
+        <StyledImageLink path="https://github.com/nstylo">
+          <GitHubIcon />
+        </StyledImageLink>
+        <StyledImageLink path="/rss.xml">
+          <RSSIcon />
+        </StyledImageLink>
       </Container>
     </HeaderWrapper>
   </header>
@@ -81,11 +81,11 @@ const Header = ({ siteTitle, className }: HeaderProps): JSX.Element => (
 const StyledImageLink = styled(ImageLink)`
   height: 100%;
   width: auto;
-  img {
+  svg {
     height: 100%;
     width: 30px;
     margin: 0 10px;
-    filter: invert(100%);
+    fill: ${(props): string => props.theme.foreground};
   }
 `
 
