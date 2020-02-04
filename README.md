@@ -10,6 +10,7 @@
 - [x] Define proper Email subscription box
 - [x] Define Comments component
 - [x] Choose global font
+- [x] Work on Footer
 - [ ] Add blog post pagination
 - [ ] Add "go to top" button
 - [ ] Automate Email for new post
@@ -20,7 +21,6 @@
 - [ ] Work out Code block color scheme
 - [ ] Blog Search
 - [ ] Work on Header
-- [ ] Work on Footer
 - [ ] Dockerize
 - [ ] Colorscheme switcher
 - [ ] Animations
@@ -31,3 +31,4 @@
 - [ ] Improve accessibility
 - [ ] Fix Newsletter rerenders on typing
 - [ ] Table of content for blog post
+- [ ] Blogpost tags for searching
