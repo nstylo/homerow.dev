@@ -42,7 +42,6 @@ const Blog = ({ data }) => {
           description={node.frontmatter.description}
           date={node.frontmatter.date}
           slug={node.fields.slug}
-          className={"blogpostpreview"}
         />
       ))}
     </Layout>

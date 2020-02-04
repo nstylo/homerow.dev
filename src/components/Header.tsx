@@ -10,7 +10,7 @@ import GitHubIcon from "../images/github.svg"
 interface ItemProps {
   name: string
   path: string // path to redirect on click
-  className: string
+  className?: string
 }
 
 const Item = ({ name, path, className }: ItemProps): JSX.Element => (
@@ -22,7 +22,7 @@ const Item = ({ name, path, className }: ItemProps): JSX.Element => (
 interface MainItemProps {
   name: string
   path?: string // path is optional, default is "/"
-  className: string
+  className?: string
 }
 
 const MainItem = ({ name, path = "/", className }: MainItemProps): JSX.Element => (
@@ -33,7 +33,7 @@ const MainItem = ({ name, path = "/", className }: MainItemProps): JSX.Element =
 
 interface ImageLinkProps {
   path?: string
-  className: string
+  className?: string
   children: React.ReactNode
 }
 
@@ -45,20 +45,20 @@ const ImageLink = ({ path = "/", children, className }: ImageLinkProps): JSX.Ele
 
 interface HeaderProps {
   siteTitle: string
-  className: string
+  className?: string
 }
 
 const Header = ({ siteTitle, className }: HeaderProps): JSX.Element => (
   <header className={className}>
     <HeaderWrapper>
       <Container>
-        <MainItem name={siteTitle} className={"mainitem"} />
+        <MainItem name={siteTitle} />
       </Container>
       <Container>
-        <StyledItem name="Projects" path="/projects" className={"item"} />
+        <StyledItem name="Projects" path="/projects" />
       </Container>
       <Container>
-        <StyledItem name="Blog" path="/blog" className={"item"} />
+        <StyledItem name="Blog" path="/blog" />
       </Container>
       <Container>
         <Searchbar className="searchbar" />

@@ -6,7 +6,7 @@ import Layout from "../components/Layout"
 import SubscriptionForm from "../forms/SubscriptionForm"
 import Comments from "../components/Comments"
 
-class BlogPost extends React.Component<{ className: string }> {
+class BlogPost extends React.Component<{ className?: string }> {
   render(): JSX.Element {
     const post = this.props.data.markdownRemark
 

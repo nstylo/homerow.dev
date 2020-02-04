@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import styled from "styled-components"
 
 interface SearchbarProps {
-  className: string
+  className?: string
 }
 
 const Searchbar = ({ className }: SearchbarProps): JSX.Element => {
