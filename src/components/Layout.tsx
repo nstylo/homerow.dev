@@ -24,7 +24,7 @@ interface ThemeProps {
 
 const theme: ThemeProps = {
   foreground: "#fff",
-  background: "#000",
+  background: "#111",
   backgroundSecondary: "#343434",
   primary: "#ee6352",
   secondary: "#006989",
@@ -123,14 +123,6 @@ const Grid = styled.div`
 const Main = styled.main`
   width: 100%;
   height: 100%;
-  margin: 0 auto;
-`
-
-const Footer = styled.footer`
-  display: grid;
-  grid-template-columns: 70% 30%;
-  grid-template-rows: ;
-  max-width: 1024px;
   margin: 0 auto;
 `
 

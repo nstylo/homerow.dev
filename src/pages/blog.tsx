@@ -26,7 +26,6 @@ const BlogPostPreview = ({ key, title, description, date, slug, className }: Blo
 }
 
 const StyledBlogPostPreview = styled(BlogPostPreview)`
-  background-color: black;
   padding: 8px 16px;
   border-left-style: solid;
   border-width: 3px;

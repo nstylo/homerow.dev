@@ -66,7 +66,6 @@ const Header = styled.h3`
 // inner wrapper
 const Wrapper = styled.div`
   width: 60%;
-  background-color: ${(props): string => props.theme.backgroundSecondary};
   padding: 40px 36px;
 `
 
@@ -75,8 +74,9 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  background-color: transparent;
+  background-color: #181818;
   padding: 30px 0;
+  border-top: 1px solid ${(props): string => props.theme.backgroundSecondary} !important;
 `
 
 interface InputProps {
