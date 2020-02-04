@@ -27,14 +27,22 @@ const StyledComments = styled(Comments)`
   li {
     font-size: 20px;
   }
+  h4 {
+    padding-top: 16px;
+    border-top: 1px solid ${(props): string => props.theme.backgroundSecondary} !important;
+  }
 
+  #isso-root {
+    margin: 0 0 40px 0;
+  }
   .isso-postbox {
     margin: 0 !important;
   }
   .textarea {
+    font-size: 20px;
     border-radius: 0 !important;
     background-color: ${(props): string => props.theme.backgroundSecondary} !important;
-    margin: 0.4em 0 0.3em 0 !important;
+    margin: 0.4rem 0 0.3rem 0 !important;
   }
   input {
     border-radius: 0 !important;
@@ -51,16 +59,14 @@ const StyledComments = styled(Comments)`
     background-color: ${(props): string => props.theme.primary} !important;
     border: none !important;
     line-height: 40px !important;
-    padding: 0 0.4em !important;
+    padding: 0 0.4rem !important;
   }
   .preview {
+    margin: 0.4rem 0 0.3rem 0 !important;
     color: ${(props): string => props.theme.background} !important;
     border: none !important;
     border-radius: 0 !important;
     min-height: 58px;
-  }
-  .preview p {
-    font-size: 24px !important;
   }
   .text ul {
     padding-inline-start: 100px !important;
@@ -68,11 +74,15 @@ const StyledComments = styled(Comments)`
   .isso-comment {
     border-top: 1px solid ${(props): string => props.theme.backgroundSecondary} !important;
   }
+  .preview .isso-comment {
+    border-top: none !important;
+  }
   .author {
   }
   .reply,
   .edit,
-  .delete {
+  .delete,
+  .load_hidden {
     color: ${(props): string => props.theme.primary} !important;
   }
   a:hover {
