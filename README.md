@@ -11,7 +11,7 @@
 - [x] Define Comments component
 - [x] Choose global font
 - [x] Work on Footer
-- [ ] Add blog post pagination
+- [x] Add blog post pagination
 - [ ] Add "go to top" button
 - [ ] Automate Email for new post
 - [ ] Include Favicon
