@@ -4,7 +4,6 @@
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 
-// You can delete this file if you're not using it
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
@@ -26,16 +25,32 @@ exports.createPages = async ({ graphql, actions }) => {
     query {
       allMarkdownRemark {
         edges {
+          next {
+            fields {
+              slug
+            }
+            frontmatter {
+              title
+            }
+          }
           node {
             fields {
               slug
+            }
+          }
+          previous {
+            fields {
+              slug
+            }
+            frontmatter {
+              title
             }
           }
         }
       }
     }
   `)
-  result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+  result.data.allMarkdownRemark.edges.forEach(({ node, next, previous }) => {
     createPage({
       path: node.fields.slug,
       component: path.resolve(`./src/templates/blog-post.tsx`),
@@ -43,6 +58,8 @@ exports.createPages = async ({ graphql, actions }) => {
         // Data passed to context is available
         // in page queries as GraphQL variables.
         slug: node.fields.slug,
+        next,
+        previous,
       },
     })
   })
