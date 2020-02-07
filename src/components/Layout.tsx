@@ -33,13 +33,6 @@ const theme: ThemeProps = {
 }
 
 const GlobalStyle = createGlobalStyle<{ theme: ThemeProps }>`
-  @font-face {
-      font-family: 'Open Sans';
-      src: url('OpenSans-Regular.woff2') format('woff2'),
-          url('OpenSans-Regular.woff') format('woff');
-      font-weight: normal;
-      font-style: normal;
-  }
   html {
     color: ${(props): string => props.theme.foreground}
     background-color: ${(props): string => props.theme.background};
