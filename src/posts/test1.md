@@ -1,7 +1,8 @@
 ---
-title: "This is a test blogpost"
-date: "2020-01-30"
-description: "Today we are discussing Latex and code highlighting"
+title: This is a test blogpost
+date: 2020-01-27
+description: Today we are discussing Latex and code highlighting
+featuredImage: ../featuredImages/test.jpeg
 ---
 
 # Markdown: Syntax
