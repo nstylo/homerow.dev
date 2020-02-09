@@ -89,8 +89,22 @@ module.exports = {
         path: `${__dirname}/src/images/`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `featuredImages`,
+        path: `${__dirname}/src/featuredImages/`,
+      },
+    },
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        useMozJpeg: false,
+        stripMetadata: true,
+        defaultQuality: 100,
+      },
+    },
     {
       resolve: `gatsby-transformer-remark`,
       options: {
