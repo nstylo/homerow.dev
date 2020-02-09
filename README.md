@@ -12,6 +12,7 @@
 - [x] Choose global font
 - [x] Work on Footer
 - [x] Add blog post pagination
+- [x] Blog List Preview
 - [ ] Add "go to top" button
 - [ ] Automate Email for new post
 - [ ] Include Favicon
@@ -25,10 +26,18 @@
 - [ ] Colorscheme switcher
 - [ ] Animations
 - [ ] Project Cards
-- [ ] Blog Cards
+- [ ] Blog Card Preview
 - [ ] Mainpage
 - [ ] Improve SEO
 - [ ] Improve accessibility
 - [ ] Fix Newsletter rerenders on typing
 - [ ] Table of content for blog post
 - [ ] Blogpost tags for searching
+- [ ] Add open source analytics
+- [ ] Browser support
+- [ ] Optimizations (e.g. font-display)
+- [ ] Improve 404 page
+- [ ] Introduce tags
+- [ ] Make posts sharable
+- [ ] Blog post intro
+- [ ] Create About page and upload CV
