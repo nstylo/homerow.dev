@@ -18,6 +18,7 @@ const Blog = ({ data }) => {
             date={node.frontmatter.date}
             slug={node.fields.slug}
             featuredImage={node.frontmatter.featuredImage ? node.frontmatter.featuredImage.childImageSharp.fluid : null}
+            tags={node.frontmatter.tags ? node.frontmatter.tags : []}
           />
         ))}
       </PreviewWrapper>
@@ -46,12 +47,21 @@ interface ListPreviewProps {
   slug: string
   className: string
   featuredImage: object
+  tags: string[]
 }
 
-const ListPreview = ({ title, description, date, slug, className, featuredImage }: ListPreviewProps): JSX.Element => (
+const ListPreview = ({
+  title,
+  description,
+  date,
+  slug,
+  className,
+  featuredImage,
+  tags,
+}: ListPreviewProps): JSX.Element => (
   <ListWrapper to={slug} className={className}>
     {featuredImage ? <Img fluid={featuredImage} /> : null}
-    <ListSection title={title} description={description} date={date} />
+    <ListSection title={title} description={description} date={date} tags={tags} />
   </ListWrapper>
 )
 
@@ -59,7 +69,8 @@ const ListWrapper = styled(Link)`
   display: grid;
   grid-template-columns: 40% 60%;
   width: 100%;
-  height: 300px;
+  min-height: 300px;
+  height: auto;
   background-color: ${(props): string => "#181818"};
   margin-bottom: 32px;
   text-decoration: none;
@@ -81,9 +92,10 @@ interface ListSectionProps {
   description: string
   date: string
   className: string
+  tags: string[]
 }
 
-const UnstyledListSection = ({ title, description, date, className }: ListSectionProps): JSX.Element => {
+const UnstyledListSection = ({ title, description, date, className, tags }: ListSectionProps): JSX.Element => {
   return (
     <div className={className}>
       <h2>{title}</h2>
@@ -94,13 +106,12 @@ const UnstyledListSection = ({ title, description, date, className }: ListSectio
         Posted on {date}
       </p>
       <p>{description}</p>
+      <TagLine tags={tags} />
     </div>
   )
 }
 
 const ListSection = styled(UnstyledListSection)`
-  max-width: 100%;
-  max-height: 100%;
   color: ${(props): string => props.theme.foreground};
   margin: 8px;
 
@@ -121,7 +132,46 @@ const ListSection = styled(UnstyledListSection)`
   }
 `
 
+interface TagLineProps {
+  tags: string[]
+  className: string
+}
+
+const UnstyledTagLine = ({ tags, className }: TagLineProps): JSX.Element => (
+  <div className={className}>
+    {tags.map(
+      (tag): JSX.Element => (
+        <Tag key={tag} tag={tag} />
+      )
+    )}
+  </div>
+)
+
+const TagLine = styled(UnstyledTagLine)`
+  width: 100%;
+  height: auto;
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+`
+
 const CardPreview = () => {}
+
+interface TagProps {
+  tag: string
+}
+
+const UnstyledTag = ({ tag, className }: TagProps): JSX.Element => <span className={className}>{tag}</span>
+
+const Tag = styled(UnstyledTag)`
+  padding: 4px 8px;
+  margin-right: 12px;
+  margin-bottom: 12px;
+  background-color: ${(props): string => props.theme.primary};
+  border: 1px solid ${(props): string => props.theme.primary};
+  border-radius: 3px;
+`
 
 export const query = graphql`
   query {
@@ -132,15 +182,16 @@ export const query = graphql`
           id
           frontmatter {
             title
-            date(formatString: "DD MMMM, YYYY")
+            date(formatString: "MMMM DD, YYYY")
             description
             featuredImage {
               childImageSharp {
-                fluid(maxWidth: 1024, maxHeight: 1024) {
+                fluid(maxWidth: 512, maxHeight: 512) {
                   ...GatsbyImageSharpFluid
                 }
               }
             }
+            tags
           }
           fields {
             slug

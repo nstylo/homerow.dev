@@ -3,6 +3,7 @@ title: This is a test blogpost
 date: 2020-01-27
 description: Today we are discussing Latex and code highlighting
 featuredImage: ../featuredImages/test.jpeg
+tags: ["javascript", "react", "web-development", "hey"]
 ---
 
 # Markdown: Syntax
