@@ -1,4 +1,5 @@
-import React, { useState, createContext, useContext } from "react"
+import React, { useState, createContext, useContext, useEffect } from "react"
+import useDebounce from "./useDebounce"
 import styled from "styled-components"
 import { Link, graphql } from "gatsby"
 import Img, { FluidObject } from "gatsby-image"
@@ -14,21 +15,19 @@ import {
   MarkdownRemarkFields,
   GatsbyImageSharpFluidFragment,
   MarkdownRemarkFrontmatter,
+  Scalars,
 } from "../../types/graphql-types"
 
 interface IQueryContext {
   searchResult: Set<string>
-  setSearchResult: React.Dispatch<React.SetStateAction<Set<string>>> | null
+  readonly setSearchResult: React.Dispatch<React.SetStateAction<Set<string>>>
   isSearching: boolean
-  setSearching: React.Dispatch<React.SetStateAction<boolean>> | null
+  readonly setSearching: React.Dispatch<React.SetStateAction<boolean>>
+  readonly index: Index<any> // TODO
 }
 
-const QueryContext = createContext<IQueryContext>({
-  searchResult: new Set<string>(),
-  setSearchResult: null,
-  isSearching: false,
-  setSearching: null,
-})
+// global context for blogpost search
+const QueryContext = createContext<IQueryContext>({} as IQueryContext) // tsc workaround
 
 interface IBlog {
   data: BlogQuery
@@ -37,10 +36,19 @@ interface IBlog {
 export default ({ data }: IBlog): JSX.Element => {
   const [searchResult, setSearchResult] = useState<Set<string>>(new Set<string>())
   const [isSearching, setSearching] = useState<boolean>(false)
+  const [index] = useState<Index<any>>(Index.load(data.siteSearchIndex?.index))
 
   return (
     <Layout>
-      <QueryContext.Provider value={{ searchResult, setSearchResult, isSearching, setSearching }}>
+      <QueryContext.Provider
+        value={{
+          searchResult,
+          setSearchResult,
+          isSearching,
+          setSearching,
+          index,
+        }}
+      >
         <Options searchIndex={data.siteSearchIndex?.index} />
         <Preview allMarkdownEdges={data.allMarkdownRemark.edges} />
       </QueryContext.Provider>
@@ -64,7 +72,7 @@ interface IPreview {
 const Preview = ({ allMarkdownEdges }: IPreview): JSX.Element => {
   const queryContext = useContext(QueryContext)
   const allBlogPosts = allMarkdownEdges.filter(({ node }) =>
-    queryContext.isSearching ? queryContext.searchResult.has(node.id) : true
+    (queryContext as IQueryContext).isSearching ? (queryContext as IQueryContext).searchResult.has(node.id) : true
   )
 
   return (
@@ -89,13 +97,13 @@ const Preview = ({ allMarkdownEdges }: IPreview): JSX.Element => {
 }
 
 interface IOptions {
-  searchIndex: any
+  searchIndex: Maybe<Scalars["SiteSearchIndex_Index"]>
   className?: string
 }
 
 const UnstyledOptions = ({ className, searchIndex }: IOptions): JSX.Element => (
   <section className={className}>
-    <Searchbar searchIndex={searchIndex} />
+    <Searchbar searchIndex={searchIndex as Maybe<Scalars["SiteSearchIndex_Index"]>} />
   </section>
 )
 
@@ -107,35 +115,42 @@ const Options = styled(UnstyledOptions)`
   background-color: ${(props): string => "#181818"};
 `
 
-const Searchbar = ({ searchIndex }): JSX.Element => {
+interface ISearchBar {
+  searchIndex: Maybe<Scalars["SiteSearchIndex_Index"]>
+}
+
+const Searchbar = ({ searchIndex }: ISearchBar): JSX.Element => {
   const [value, setValue] = useState("") // controlled value
   const queryContext = useContext(QueryContext)
-  let index: Index
 
-  const getOrCreateIndex = () =>
-    index
-      ? index
-      : // Create an elastic lunr index and hydrate with graphql query results
-        Index.load(searchIndex)
+  // debounce input value
+  const debouncedQuery = useDebounce(value, 250)
 
-  const search = e => {
-    const query = e.target.value
-    setValue(query)
+  // update queryContext if debouncedQuery has changed its value, i.e. start searching
+  // if some amount of time has passed
+  useEffect(() => {
+    if (debouncedQuery) {
+      const index = queryContext.index
 
-    //query field empty, so we don't search
-    if (query === "") {
-      queryContext.setSearching(false)
-      return
+      // search the index
+      const queryResult = index.search(debouncedQuery, {}).map(({ ref }) => index.documentStore.getDoc(ref).id)
+
+      // update the queryContext so preview can rerender
+      queryContext.setSearching(true)
+      queryContext.setSearchResult(new Set(queryResult)) // transform queryResult into set
+    } else {
+      queryContext.setSearching(false) // don't search if input field is empty
     }
+  }, [debouncedQuery])
 
-    index = getOrCreateIndex()
-    const queryResult = index.search(query, {}).map(({ ref }) => index.documentStore.getDoc(ref).id) // search index
-
-    queryContext.setSearchResult(new Set(queryResult)) // transform queryResult into set
-    queryContext.setSearching(true) // we have searched
-  }
-
-  return <input type="search" value={value} name="search" onChange={search} />
+  return (
+    <input
+      type="search"
+      value={value}
+      name="search"
+      onChange={(e: React.ChangeEvent<HTMLInputElement>): void => setValue(e.target.value)}
+    />
+  )
 }
 
 type flexdir = "row" | "column"
@@ -159,7 +174,7 @@ interface ListPreviewProps {
   slug?: string
   className?: string
   featuredImage: FluidObject | null
-  tags?: Maybe<string>[]
+  tags?: string[]
 }
 
 const ListPreview = ({
