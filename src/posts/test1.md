@@ -43,8 +43,11 @@ Readability, however, is emphasized above all else. A Markdown-formatted
 document should be publishable as-is, as plain text, without looking
 like it's been marked up with tags or formatting instructions. While
 Markdown's syntax has been influenced by several existing text-to-HTML
-filters -- including [Setext](http://docutils.sourceforge.net/mirror/setext.html), [atx](http://www.aaronsw.com/2002/atx/), [Textile](http://textism.com/tools/textile/), [reStructuredText](http://docutils.sourceforge.net/rst.html),
-[Grutatext](http://www.triptico.com/software/grutatxt.html), and [EtText](http://ettext.taint.org/doc/) -- the single biggest source of
+filters -- including [Setext](http://docutils.sourceforge.net/mirror/setext.html),
+[atx](http://www.aaronsw.com/2002/atx/), [Textile](http://textism.com/tools/textile/),
+[reStructuredText](http://docutils.sourceforge.net/rst.html),
+[Grutatext](http://www.triptico.com/software/grutatxt.html),
+and [EtText](http://ettext.taint.org/doc/) -- the single biggest source of
 inspiration for Markdown's syntax is the format of plain text email.
 
 ## Block Elements
@@ -95,7 +98,6 @@ line of a hard-wrapped paragraph:
 > This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
 > consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
 > Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
-
 > Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
 > id sem consectetuer libero luctus adipiscing.
 
@@ -111,10 +113,10 @@ adding additional levels of `>`:
 Blockquotes can contain other Markdown elements, including headers, lists,
 and code blocks:
 
-> ## This is a header.
+> ## This is a header
 >
-> 1.  This is the first list item.
-> 2.  This is the second list item.
+> 1. This is the first list item.
+> 2. This is the second list item.
 >
 > Here's some example code:
 >
@@ -149,9 +151,9 @@ and:
 
 Ordered lists use numbers followed by periods:
 
-1.  Bird
-2.  McHale
-3.  Parish
+1. Bird
+2. McHale
+3. Parish
 
 It's important to note that the actual numbers you use to mark the
 list have no effect on the HTML output Markdown produces. The HTML
@@ -159,15 +161,15 @@ Markdown produces from the above list is:
 
 If you instead wrote the list in Markdown like this:
 
-1.  Bird
-1.  McHale
-1.  Parish
+1. Bird
+1. McHale
+1. Parish
 
 or even:
 
-3. Bird
-1. McHale
-1. Parish
+1. Bird
+2. McHale
+3. Parish
 
 you'd get the exact same HTML output. The point is, if you want to,
 you can use ordinal numbers in your ordered Markdown lists, so that
@@ -194,15 +196,15 @@ List items may consist of multiple paragraphs. Each subsequent
 paragraph in a list item must be indented by either 4 spaces
 or one tab:
 
-1.  This is a list item with two paragraphs. Lorem ipsum dolor
-    sit amet, consectetuer adipiscing elit. Aliquam hendrerit
-    mi posuere lectus.
+1. This is a list item with two paragraphs. Lorem ipsum dolor
+   sit amet, consectetuer adipiscing elit. Aliquam hendrerit
+   mi posuere lectus.
 
-    Vestibulum enim wisi, viverra nec, fringilla in, laoreet
-    vitae, risus. Donec sit amet nisl. Aliquam semper ipsum
-    sit amet velit.
+   Vestibulum enim wisi, viverra nec, fringilla in, laoreet
+   vitae, risus. Donec sit amet nisl. Aliquam semper ipsum
+   sit amet velit.
 
-2.  Suspendisse id sem consectetuer libero luctus adipiscing.
+2. Suspendisse id sem consectetuer libero luctus adipiscing.
 
 It looks nice if you indent every line of the subsequent
 paragraphs, but here again, Markdown will allow you to be
@@ -314,3 +316,4 @@ Unlike a pre-formatted code block, a code span indicates code within a
 normal paragraph. For example:
 
 Use the `printf()` function.
+

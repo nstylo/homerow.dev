@@ -29,13 +29,15 @@ module.exports = {
     "react/prop-types": "off", // Disable prop-types as we use TypeScript for type checking
     "no-console": "warn",
     "react/display-name": "off",
+    "@typescript-eslint/interface-name-prefix": "off",
   },
   overrides: [
     // Override some TypeScript rules just for .js files
     {
-      files: ["*.js"],
+      files: ["*.js", "*.jsx"],
       rules: {
         "@typescript-eslint/no-var-requires": "off", //
+        "@typescript-eslint/explicit-function-return-type": "off", //
       },
     },
   ],
