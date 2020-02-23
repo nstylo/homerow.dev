@@ -1,5 +1,2 @@
-.cache
-package-lock.json
-public
 node_modules/**
 types/graphql-types.ts
