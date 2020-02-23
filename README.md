@@ -1,4 +1,4 @@
-### TODO
+# TODO
 
 - [x] Define basic styled components (buttons, wrappers, blogpost preview, header, footer)
 - [x] Define Theme and allow for changing theme
@@ -14,6 +14,9 @@
 - [x] Add blog post pagination
 - [x] Blog List Preview
 - [x] Blogpost tags for searching
+- [x] Blog Search
+- [x] Search Debounce
+- [ ] Search spinner
 - [ ] Add "go to top" button
 - [ ] Automate Email for new post
 - [ ] Include Favicon
@@ -21,7 +24,6 @@
 - [ ] Add gitlab
 - [ ] Work out color scheme for Website
 - [ ] Work out Code block color scheme
-- [ ] Blog Search
 - [ ] Work on Header
 - [ ] Dockerize
 - [ ] Colorscheme switcher
