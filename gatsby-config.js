@@ -219,6 +219,14 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     `gatsby-plugin-offline`,
     `gatsby-plugin-typescript`,
+    {
+      resolve: `gatsby-plugin-graphql-codegen`,
+      options: {
+        fileName: `types/graphql-types.ts`,
+        documentPaths: ["./src/**/*.{ts,tsx}", "./node_modules/gatsby-*/**/*.js"],
+        codegenDelay: 200,
+      },
+    },
     `gatsby-plugin-styled-components`,
     {
       resolve: "gatsby-plugin-mailchimp",

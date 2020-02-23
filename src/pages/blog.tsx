@@ -1,59 +1,87 @@
 import React, { useState, createContext, useContext } from "react"
 import styled from "styled-components"
 import { Link, graphql } from "gatsby"
-import Img from "gatsby-image"
+import Img, { FluidObject } from "gatsby-image"
 import { Index } from "elasticlunr"
 
 import Layout from "../components/Layout"
 import Clock from "../images/clock.svg"
 
+import {
+  BlogQuery,
+  MarkdownRemark,
+  Maybe,
+  MarkdownRemarkFields,
+  GatsbyImageSharpFluidFragment,
+  MarkdownRemarkFrontmatter,
+} from "../../types/graphql-types"
+
 interface IQueryContext {
   searchResult: Set<string>
-  setSearchResult: React.Dispatch<React.SetStateAction<Set<string>>>
+  setSearchResult: React.Dispatch<React.SetStateAction<Set<string>>> | null
   isSearching: boolean
-  setSearching: React.Dispatch<React.SetStateAction<boolean>>
+  setSearching: React.Dispatch<React.SetStateAction<boolean>> | null
 }
 
 const QueryContext = createContext<IQueryContext>({
   searchResult: new Set<string>(),
-  setSearchResult: (value: React.SetStateAction<Set<string>>): void => {},
+  setSearchResult: null,
   isSearching: false,
-  setSearching: (value: React.SetStateAction<boolean>): void => {},
+  setSearching: null,
 })
 
-export default ({ data }) => {
+interface IBlog {
+  data: BlogQuery
+}
+
+export default ({ data }: IBlog): JSX.Element => {
   const [searchResult, setSearchResult] = useState<Set<string>>(new Set<string>())
   const [isSearching, setSearching] = useState<boolean>(false)
 
   return (
     <Layout>
       <QueryContext.Provider value={{ searchResult, setSearchResult, isSearching, setSearching }}>
-        <Options searchIndex={data.siteSearchIndex.index} />
+        <Options searchIndex={data.siteSearchIndex?.index} />
         <Preview allMarkdownEdges={data.allMarkdownRemark.edges} />
       </QueryContext.Provider>
     </Layout>
   )
 }
 
-const Preview = ({ allMarkdownEdges }): JSX.Element => {
+interface IPreview {
+  allMarkdownEdges: Array<{
+    node: Pick<MarkdownRemark, "id" | "excerpt"> & {
+      frontmatter: Maybe<
+        Pick<MarkdownRemarkFrontmatter, "title" | "date" | "description" | "tags"> & {
+          featuredImage: Maybe<{ childImageSharp: Maybe<{ fluid: Maybe<GatsbyImageSharpFluidFragment> }> }>
+        }
+      >
+      fields: Maybe<Pick<MarkdownRemarkFields, "slug">>
+    }
+  }>
+}
+
+const Preview = ({ allMarkdownEdges }: IPreview): JSX.Element => {
   const queryContext = useContext(QueryContext)
   const allBlogPosts = allMarkdownEdges.filter(({ node }) =>
     queryContext.isSearching ? queryContext.searchResult.has(node.id) : true
   )
-
-  console.log(allBlogPosts)
 
   return (
     <PreviewWrapper flexdir="column">
       {allBlogPosts.map(({ node }) => (
         <ListPreview
           key={node.id}
-          title={node.frontmatter.title}
-          description={node.frontmatter.description}
-          date={node.frontmatter.date}
-          slug={node.fields.slug}
-          featuredImage={node.frontmatter.featuredImage ? node.frontmatter.featuredImage.childImageSharp.fluid : null}
-          tags={node.frontmatter.tags ? node.frontmatter.tags : []}
+          title={node.frontmatter?.title ? node.frontmatter.title : undefined}
+          description={node.frontmatter?.description ? node.frontmatter.description : undefined}
+          date={node.frontmatter?.date ? node.frontmatter.date : undefined}
+          slug={node.fields?.slug as string}
+          featuredImage={
+            node.frontmatter?.featuredImage
+              ? (node.frontmatter?.featuredImage?.childImageSharp?.fluid as FluidObject)
+              : null
+          }
+          tags={node.frontmatter?.tags ? node.frontmatter.tags : undefined}
         />
       ))}
     </PreviewWrapper>
@@ -125,23 +153,23 @@ const PreviewWrapper = styled.div<PreviewWrapperProps>`
 `
 
 interface ListPreviewProps {
-  title: string
-  description: string
-  date: string
-  slug: string
+  title?: string
+  description?: string
+  date?: string
+  slug?: string
   className?: string
-  featuredImage: object
-  tags: string[]
+  featuredImage: FluidObject | null
+  tags?: Maybe<string>[]
 }
 
 const ListPreview = ({
-  title,
-  description,
-  date,
-  slug,
+  title = "NO TITLE GIVEN",
+  description = "NO DESCRIPTION GIVEN",
+  date = "NO DATE GIVEN",
+  slug = "NO SLUG GIVEN",
   className,
   featuredImage,
-  tags,
+  tags = [],
 }: ListPreviewProps): JSX.Element => (
   <ListWrapper to={slug} className={className}>
     {featuredImage ? <Img fluid={featuredImage} /> : null}
@@ -215,7 +243,7 @@ const ListSection = styled(UnstyledListSection)`
 
 interface TagLineProps {
   tags: string[]
-  className: string
+  className?: string
 }
 
 const UnstyledTagLine = ({ tags, className }: TagLineProps): JSX.Element => (
@@ -256,7 +284,7 @@ const Tag = styled(UnstyledTag)`
 `
 
 export const query = graphql`
-  query {
+  query Blog {
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       totalCount
       edges {
