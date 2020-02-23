@@ -1,5 +1,5 @@
 import React, { useState, createContext, useContext, useEffect } from "react"
-import useDebounce from "./useDebounce"
+import useDebounce from "../misc/useDebounce"
 import styled from "styled-components"
 import { Link, graphql } from "gatsby"
 import Img, { FluidObject } from "gatsby-image"
