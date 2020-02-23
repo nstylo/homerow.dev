@@ -171,6 +171,8 @@ const Tag = styled(UnstyledTag)`
   background-color: ${(props): string => props.theme.primary};
   border: 1px solid ${(props): string => props.theme.primary};
   border-radius: 3px;
+  font-weight: 600;
+  font-size: 0.55rem;
 `
 
 export const query = graphql`
