@@ -151,10 +151,9 @@ const ListPreview = ({
 
 const ListWrapper = styled(Link)`
   display: grid;
-  grid-template-columns: 40% 60%;
+  grid-template-columns: 36% 60%;
   width: 100%;
   min-height: 300px;
-  height: auto;
   background-color: ${(props): string => "#181818"};
   margin-bottom: 32px;
   text-decoration: none;
@@ -165,8 +164,6 @@ const ListWrapper = styled(Link)`
   .gatsby-image-wrapper {
     grid-column-start: 1;
     grid-column-end: 1;
-    max-width: 100%;
-    max-height: 100%;
     margin: 8px;
   }
 `

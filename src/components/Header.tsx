@@ -55,13 +55,10 @@ const Header = ({ siteTitle, className }: HeaderProps): JSX.Element => (
         <MainItem name={siteTitle} />
       </Container>
       <Container>
-        <StyledItem name="Projects" path="/projects" />
+        <Item name="Projects" path="/projects" />
       </Container>
       <Container>
-        <StyledItem name="Blog" path="/blog" />
-      </Container>
-      <Container>
-        <Searchbar className="searchbar" />
+        <Item name="Blog" path="/blog" />
       </Container>
       <Container>
         <StyledImageLink path="https://www.linkedin.com/in/niklas-stylianou-452367199">
@@ -88,8 +85,6 @@ const StyledImageLink = styled(ImageLink)`
     fill: ${(props): string => props.theme.foreground};
   }
 `
-
-const StyledItem = styled(Item)``
 
 const Container = styled.div`
   display: flex;
