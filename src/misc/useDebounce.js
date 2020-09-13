@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react"
 
 // Our hook
-export default function useDebounce<T>(value: T, delay = 200): T {
+export default function useDebounce(value, delay = 200) {
   // State and setters for debounced value
-  const [debouncedValue, setDebouncedValue] = useState<T>(value)
+  const [debouncedValue, setDebouncedValue] = useState(value)
 
   useEffect(
     () => {
@@ -20,7 +20,7 @@ export default function useDebounce<T>(value: T, delay = 200): T {
       // To put it in context, if the user is typing within our app's ...
       // ... search box, we don't want the debouncedValue to update until ...
       // ... they've stopped typing for more than 500ms.
-      return (): void => {
+      return () => {
         clearTimeout(handler)
       }
     },

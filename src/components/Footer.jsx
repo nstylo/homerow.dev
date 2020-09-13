@@ -7,7 +7,7 @@ import TSIcon from "../images/typescript.svg"
 import ReactIcon from "../images/reacticon.svg"
 import IssoIcon from "../images/isso.svg"
 
-const Footer = (): JSX.Element => {
+const Footer = () => {
   return (
     <Wrapper>
       <p>© {new Date().getFullYear()} Homerow - Software Blog</p>
@@ -41,16 +41,10 @@ const Wrapper = styled.footer`
   flex-direction: column;
   align-items: center;
   padding: 20px 0;
-  border-top: 1px solid ${(props): string => props.theme.backgroundSecondary} !important;
+  border-top: 1px solid ${props => props.theme.backgroundSecondary} !important;
 `
 
-interface ImageLinkProps {
-  path?: string
-  className: string
-  children: React.ReactNode
-}
-
-const ImageLink = ({ path = "/", className, children }: ImageLinkProps): JSX.Element => (
+const ImageLink = ({ path = "/", className, children }) => (
   <a href={path} className={className} target="_blank" rel="noopener noreferrer">
     {children}
   </a>
@@ -63,7 +57,7 @@ const StyledImageLink = styled(ImageLink)`
     height: 26px;
     width: 26px;
     margin: 0 10px;
-    fill: ${(props): string => props.theme.foreground};
+    fill: ${props => props.theme.foreground};
   }
 `
 

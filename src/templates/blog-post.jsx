@@ -9,8 +9,8 @@ import Comments from "../components/Comments"
 import LeftArrow from "../images/left-arrow.svg"
 import RightArrow from "../images/right-arrow.svg"
 
-class BlogPost extends React.Component<{ className?: string; pageContext: object }> {
-  render(): JSX.Element {
+class BlogPost extends React.Component {
+  render() {
     const post = this.props.data.markdownRemark
     const { previous, next } = this.props.pageContext
 
@@ -34,7 +34,7 @@ const Article = ({ className, post, pageContext }) => (
 
 const StyledArticle = styled(Article)`
   a {
-    color: ${(props): string => props.theme.primary};
+    color: ${props => props.theme.primary};
     text-decoration: none;
   }
 `
@@ -68,7 +68,7 @@ const Wrapper = styled.nav`
   align-items: center;
 
   svg {
-    fill: ${(props): string => props.theme.primary};
+    fill: ${props => props.theme.primary};
     width: 26px;
     height: 26px;
   }
@@ -78,7 +78,7 @@ const Wrapper = styled.nav`
     font-size: 0.8rem;
     font-weight: bold;
     text-decoration: none;
-    color: ${(props): string => props.theme.foreground};
+    color: ${props => props.theme.foreground};
   }
 `
 
@@ -98,7 +98,7 @@ const LeftSpan = styled.span`
     position: absolute;
     bottom: 52px;
     content: "previous";
-    color: ${(props): string => props.theme.backgroundSecondary};
+    color: ${props => props.theme.backgroundSecondary};
     font-size: 0.6rem;
     font-weight: normal;
   }
@@ -122,7 +122,7 @@ const RightSpan = styled.span`
     bottom: 52px;
     right: 0;
     content: "next";
-    color: ${(props): string => props.theme.backgroundSecondary};
+    color: ${props => props.theme.backgroundSecondary};
     font-size: 0.6rem;
     font-weight: normal;
   }

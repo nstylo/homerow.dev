@@ -7,48 +7,25 @@ import LinkedInIcon from "../images/linkedin.svg"
 import RSSIcon from "../images/rss.svg"
 import GitHubIcon from "../images/github.svg"
 
-interface ItemProps {
-  name: string
-  path: string // path to redirect on click
-  className?: string
-}
-
-const Item = ({ name, path, className }: ItemProps): JSX.Element => (
+const Item = ({ name, path, className }) => (
   <h4 className={className}>
     <StyledLink to={path}>{name}</StyledLink>
   </h4>
 )
 
-interface MainItemProps {
-  name: string
-  path?: string // path is optional, default is "/"
-  className?: string
-}
-
-const MainItem = ({ name, path = "/", className }: MainItemProps): JSX.Element => (
+const MainItem = ({ name, path = "/", className }) => (
   <h3 className={className}>
     <StyledLink to={path}>{name}</StyledLink>
   </h3>
 )
 
-interface ImageLinkProps {
-  path?: string
-  className?: string
-  children: React.ReactNode
-}
-
-const ImageLink = ({ path = "/", children, className }: ImageLinkProps): JSX.Element => (
+const ImageLink = ({ path = "/", children, className }) => (
   <a href={path} className={className} target="_blank" rel="noopener noreferrer">
     {children}
   </a>
 )
 
-interface HeaderProps {
-  siteTitle: string
-  className?: string
-}
-
-const Header = ({ siteTitle, className }: HeaderProps): JSX.Element => (
+const Header = ({ siteTitle, className }) => (
   <header className={className}>
     <HeaderWrapper>
       <Container>
@@ -82,7 +59,7 @@ const StyledImageLink = styled(ImageLink)`
     height: 100%;
     width: 30px;
     margin: 0 10px;
-    fill: ${(props): string => props.theme.foreground};
+    fill: ${props => props.theme.foreground};
   }
 `
 
@@ -101,7 +78,7 @@ const HeaderWrapper = styled.div`
 `
 
 const StyledLink = styled(Link)`
-  color: ${(props): string => props.theme.foreground};
+  color: ${props => props.theme.foreground};
   text-decoration: none;
 `
 

@@ -12,17 +12,7 @@ import styled, { ThemeProvider, createGlobalStyle } from "styled-components"
 import Header from "./Header"
 import Footer from "./Footer"
 
-interface ThemeProps {
-  foreground: string
-  background: string
-  backgroundSecondary: string
-  primary: string
-  secondary: string
-  success: string
-  error: string
-}
-
-const theme: ThemeProps = {
+const theme = {
   foreground: "#fff",
   background: "#111",
   backgroundSecondary: "#343434",
@@ -32,10 +22,10 @@ const theme: ThemeProps = {
   error: "#ff5e5b",
 }
 
-const GlobalStyle = createGlobalStyle<{ theme: ThemeProps }>`
+const GlobalStyle = createGlobalStyle`
   html {
-    color: ${(props): string => props.theme.foreground}
-    background-color: ${(props): string => props.theme.background};
+    color: ${props => props.theme.foreground}
+    background-color: ${props => props.theme.background};
     font-size: 32px;
     font-family: 'Open Sans', sans-serif;
     height: 100%;
@@ -68,7 +58,7 @@ const GlobalStyle = createGlobalStyle<{ theme: ThemeProps }>`
   }
 `
 
-const Layout = ({ children }) => {
+export default ({ children }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -99,11 +89,11 @@ const Layout = ({ children }) => {
   )
 }
 
-const Container = styled.div<{ colStart: number; colEnd: number; rowStart?: number; rowEnd?: number; style?: object }>`
-  grid-column-start: ${({ colStart }): number => colStart};
-  grid-column-end: ${({ colEnd }): number => colEnd};
-  grid-row-start: ${({ rowStart }): number | undefined | null => rowStart};
-  grid-row-end: ${({ rowEnd }): number | undefined | null => rowEnd};
+const Container = styled.div`
+  grid-column-start: ${({ colStart }) => colStart};
+  grid-column-end: ${({ colEnd }) => colEnd};
+  grid-row-start: ${({ rowStart }) => rowStart};
+  grid-row-end: ${({ rowEnd }) => rowEnd};
 `
 
 const Grid = styled.div`
@@ -118,5 +108,3 @@ const Main = styled.main`
   height: 100%;
   margin: 0 auto;
 `
-
-export default Layout

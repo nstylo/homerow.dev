@@ -4,13 +4,11 @@ import addToMailchimp from "gatsby-plugin-mailchimp"
 
 import MailIcon from "../images/envelope-solid.svg"
 
-type submission = "success" | "failure" | "not_submitted" | "client_error"
+const SubscriptionForm = () => {
+  const [submitted, setSubmitted] = useState("not_submitted")
+  const [mail, setMail] = useState("")
 
-const SubscriptionForm = (): JSX.Element => {
-  const [submitted, setSubmitted] = useState<submission>("not_submitted")
-  const [mail, setMail] = useState<string>("")
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = e => {
     e.preventDefault() // do not reload page
 
     addToMailchimp(mail)
@@ -22,9 +20,9 @@ const SubscriptionForm = (): JSX.Element => {
           setSubmitted("failure") // user is already registered
         }
       })
-      .catch((error: Error) => {
+      .catch(error => {
         setSubmitted("client_error")
-        console.log(error)
+        console.log(error) // TODO
       })
   }
 
@@ -76,15 +74,10 @@ const Container = styled.div`
   width: 100%;
   background-color: #181818;
   padding: 30px 0;
-  border-top: 1px solid ${(props): string => props.theme.backgroundSecondary} !important;
+  border-top: 1px solid ${props => props.theme.backgroundSecondary} !important;
 `
 
-interface InputProps {
-  mail: string
-  setMail: (mail: string) => void
-}
-
-const InputField = ({ mail, setMail }: InputProps): JSX.Element => {
+const InputField = ({ mail, setMail }) => {
   return (
     <InputWrapper>
       <Label>
@@ -103,22 +96,22 @@ const Label = styled.label.attrs(() => ({
   align-items: center;
   justify-content: center;
   flex-basis: 8%;
-  background-color: ${(props): string => props.theme.primary};
+  background-color: ${props => props.theme.primary};
   cursor: pointer;
 
   svg {
     width: 22px;
     height: 22px;
-    fill: ${(props): string => props.theme.foreground};
+    fill: ${props => props.theme.foreground};
   }
 `
 
-const Input = styled.input.attrs(({ mail, setMail }: InputProps) => ({
+const Input = styled.input.attrs(({ mail, setMail }) => ({
   type: "email",
   name: "email",
   id: "subscriptionform-email",
   value: mail,
-  onChange: (e: React.FormEvent<HTMLInputElement>): void => setMail(e.currentTarget.value),
+  onChange: e => setMail(e.currentTarget.value),
 }))`
   flex-basis: 72%;
   padding: 0 12px;
@@ -128,8 +121,8 @@ const SubButton = styled.button.attrs(() => ({
   type: "submit",
 }))`
   flex-basis: 20%;
-  color: ${(props): string => props.theme.foreground};
-  background-color: ${(props): string => props.theme.primary};
+  color: ${props => props.theme.foreground};
+  background-color: ${props => props.theme.primary};
   border: none;
   cursor: pointer;
 `
@@ -144,9 +137,9 @@ const InputWrapper = styled.div`
 const ResponseBanner = styled.div`
   width: 100%;
   height: 1.2rem;
-  background-color: ${({ submitted, theme }): string => (submitted === "success" ? theme.success : theme.error)};
-  display: ${({ submitted }): string => (submitted === "not_submitted" ? "none" : "flex")};
-  aria-hidden: ${({ submitted }): string => (submitted === "not_submitted" ? "true" : "false")};
+  background-color: ${({ submitted, theme }) => (submitted === "success" ? theme.success : theme.error)};
+  display: ${({ submitted }) => (submitted === "not_submitted" ? "none" : "flex")};
+  aria-hidden: ${({ submitted }) => (submitted === "not_submitted" ? "true" : "false")};
   align-items: center;
 
   p {
