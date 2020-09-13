@@ -3,7 +3,6 @@ import styled from "styled-components"
 import NetlifyIcon from "../images/netlify.svg"
 import StyledIcon from "../images/styled-components.svg"
 import GatsbyIcon from "../images/gatsby.svg"
-import TSIcon from "../images/typescript.svg"
 import ReactIcon from "../images/reacticon.svg"
 import IssoIcon from "../images/isso.svg"
 
@@ -18,9 +17,6 @@ const Footer = () => {
         </StyledImageLink>
         <StyledImageLink path="https://www.reactjs.org/">
           <ReactIcon />
-        </StyledImageLink>
-        <StyledImageLink path="https://www.typescriptlang.org/">
-          <TSIcon />
         </StyledImageLink>
         <StyledImageLink path="https://styled-components.com/">
           <StyledIcon />
